@@ -76,7 +76,8 @@ where rank=1
 ```sql
 select*
 from netflix
-where release_year=2020 and type= 'Movie'```
+where release_year=2020 and type= 'Movie'
+```
 
 **Objective:** Retrieve all movies released in a specific year.
 
