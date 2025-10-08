@@ -35,7 +35,8 @@ create table netflix
 	duration varchar(15),
 	listed_in varchar(250),
 	description varchar(550)
-);```
+);
+```
 
 ## Business Problems and Solutions
 
@@ -65,7 +66,8 @@ select
 	rank()over(partition by type order by count(*) desc) as rank
 from netflix
 group by 1, 2) as t1
-where rank=1```
+where rank=1
+```
 
 **Objective:** Identify the most frequently occurring rating for each type of content.
 
@@ -90,6 +92,8 @@ from netflix
 group by 1
 order by 2 desc
 limit 5
+```
+
 
 **Objective:** Identify the top 5 countries with the highest number of content items.
 
@@ -100,7 +104,8 @@ select* from netflix
 where
 type = 'Movie'
 and
-duration = (select MAX(duration) from netflix)```
+duration = (select MAX(duration) from netflix)
+```
 
 **Objective:** Find the movie with the longest duration.
 
@@ -110,7 +115,8 @@ duration = (select MAX(duration) from netflix)```
 SELECT
 *
 FROM netflix
-WHERE TO_DATE(date_added, 'Month DD, YYYY') >= CURRENT_DATE - INTERVAL '7 years'```
+WHERE TO_DATE(date_added, 'Month DD, YYYY') >= CURRENT_DATE - INTERVAL '7 years'
+```
 
 **Objective:** Retrieve content added to Netflix in the last 7 years.
 
@@ -118,9 +124,10 @@ WHERE TO_DATE(date_added, 'Month DD, YYYY') >= CURRENT_DATE - INTERVAL '7 years'
 
 ```sql
 select* from netflix
-where director ILIKE '%Rajiv Chilaka%' ```
+where director ILIKE '%Rajiv Chilaka%'
+```
 
-**Objective:** List all content directed by 'Rajiv Chilaka'.
+**Objective:** List all content directed by 'Rajiv Chilaka'.```
 
 ### 8. List All TV Shows with More Than 5 Seasons
 
@@ -140,7 +147,8 @@ select
 count(*) as total_content,
 unnest(string_to_array(listed_in,',')) as genre
 from netflix
-group by 2```
+group by 2
+```
 
 **Objective:** Count the number of content items in each genre.
 
@@ -156,7 +164,8 @@ from netflix
 where country ilike '%India%'
 group by 1
 order by 3 desc
-limit 3```
+limit 3
+```
 **Objective:** Calculate and rank years by the average number of content releases by India.
 
 ### 11. List All Movies that are Documentaries
@@ -166,7 +175,8 @@ select* from netflix
 where
 type='Movie'
 and
-listed_in ilike'%Documentaries%'```
+listed_in ilike'%Documentaries%'
+```
 
 **Objective:** Retrieve all movies classified as documentaries.
 
@@ -174,7 +184,8 @@ listed_in ilike'%Documentaries%'```
 
 ```sql
 select* from netflix
-where director is null```
+where director is null
+```
 
 **Objective:** List content that does not have a director.
 
@@ -222,7 +233,8 @@ from
 	end category
 	from netflix
 	) as t1
-group by 1```
+group by 1
+```
 
 **Objective:** Categorize content as 'Bad' if it contains 'kill' or 'violence' and 'Good' otherwise. Count the number of items in each category.
 
